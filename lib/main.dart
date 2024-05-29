@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:online_currency_price/Models/Currency.dart';
 import 'package:http/http.dart' as http;
@@ -27,30 +26,30 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             fontFamily: 'dana',
             textTheme: const TextTheme(
-              headline1: TextStyle(
+              displayLarge: TextStyle(
                   fontFamily: 'dana',
                   fontSize: 16,
                   fontWeight: FontWeight.w700),
-              bodyText1: TextStyle(
+              bodyLarge: TextStyle(
                   fontFamily: 'dana',
                   fontSize: 13,
                   fontWeight: FontWeight.w300),
-              headline2: TextStyle(
+              displayMedium: TextStyle(
                   fontFamily: 'dana',
                   fontSize: 14,
                   color: Colors.white,
                   fontWeight: FontWeight.w300),
-              bodyText2: TextStyle(
+              bodyMedium: TextStyle(
                   fontFamily: 'dana',
                   fontSize: 14,
                   color: Colors.black,
                   fontWeight: FontWeight.w300),
-              headline3: TextStyle(
+              displaySmall: TextStyle(
                   fontFamily: 'dana',
                   fontSize: 14,
                   color: Colors.red,
                   fontWeight: FontWeight.w700),
-              headline4: TextStyle(
+              headlineMedium: TextStyle(
                   fontFamily: 'dana',
                   fontSize: 14,
                   color: Colors.green,
@@ -62,7 +61,7 @@ class MyApp extends StatelessWidget {
 }
 
 class Home extends StatefulWidget {
-  Home({
+  const Home({
     super.key,
   });
 
@@ -85,7 +84,7 @@ class _HomeState extends State<Home> {
     if (value.statusCode == 200 && currency.isEmpty) {
       _showSnackBar(context, "بروزرسانی اطلاعات با موفقیت انجام شد");
       List jsonList = convert.jsonDecode(value.body);
-      if (jsonList.length > 0) {
+      if (jsonList.isNotEmpty) {
         for (int i = 0; i < jsonList.length; i++) {
           setState(() {
             currency.add(Currency(
@@ -140,7 +139,7 @@ class _HomeState extends State<Home> {
             Align(
               alignment: Alignment.centerRight,
               child: Text("قیمت به روز ارز",
-                  style: Theme.of(context).textTheme.headline1),
+                  style: Theme.of(context).textTheme.displayLarge),
             ),
             // Expanded(
             //     child: Align(
@@ -164,15 +163,15 @@ class _HomeState extends State<Home> {
                       width: 8,
                     ),
                     Text("نرخ ارز آزاد چیست؟",
-                        style: Theme.of(context).textTheme.headline1),
+                        style: Theme.of(context).textTheme.displayLarge),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Text(
                   " نرخ ارزها در معاملات نقدی و رایج روزانه است معاملات نقدی معاملاتی هستند که خریدار و فروشنده به محض انجام معامله، ارز و ریال را با هم تبادل می نمایند.",
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 24, 0, 0),
@@ -187,15 +186,15 @@ class _HomeState extends State<Home> {
                       children: [
                         Text(
                           "نام آزاد ارز",
-                          style: Theme.of(context).textTheme.headline2,
+                          style: Theme.of(context).textTheme.displayMedium,
                         ),
                         Text(
                           "قیمت",
-                          style: Theme.of(context).textTheme.headline2,
+                          style: Theme.of(context).textTheme.displayMedium,
                         ),
                         Text(
                           "تغییر",
-                          style: Theme.of(context).textTheme.headline2,
+                          style: Theme.of(context).textTheme.displayMedium,
                         )
                       ],
                     ),
@@ -221,9 +220,9 @@ class _HomeState extends State<Home> {
                           height: 50,
                           child: TextButton.icon(
                               style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      Color.fromARGB(255, 202, 193, 255)),
-                                  shape: MaterialStateProperty.all<
+                                  backgroundColor: WidgetStateProperty.all(
+                                      const Color.fromARGB(255, 202, 193, 255)),
+                                  shape: WidgetStateProperty.all<
                                           RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
                                           borderRadius:
@@ -243,14 +242,14 @@ class _HomeState extends State<Home> {
                                 padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
                                 child: Text(
                                   "بروزرسانی",
-                                  style: Theme.of(context).textTheme.headline1,
+                                  style: Theme.of(context).textTheme.displayLarge,
                                 ),
                               )
                           ),
                         ),
                         Text(
                           'آخرین بروزرسانی ${_getTime()}',
-                          style: Theme.of(context).textTheme.bodyText1,
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         const SizedBox(
                           width: 0,
@@ -322,14 +321,14 @@ class MyItem extends StatelessWidget {
               right: 27,
               child: Text(
                 currency[position].title!,
-                style: Theme.of(context).textTheme.bodyText2,
+                style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
             Positioned(
               left: 125,
               child: Text(
                 changeNumbersToFarci(currency[position].price.toString()),
-                style: Theme.of(context).textTheme.bodyText2,
+                style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
             Positioned(
@@ -337,8 +336,8 @@ class MyItem extends StatelessWidget {
               child: Text(
                 changeNumbersToFarci(currency[position].changes.toString()),
                 style: currency[position].status == "n"
-                    ? Theme.of(context).textTheme.headline3
-                    : Theme.of(context).textTheme.headline4,
+                    ? Theme.of(context).textTheme.displaySmall
+                    : Theme.of(context).textTheme.headlineMedium,
                 ),
               ),
           ]
@@ -351,7 +350,7 @@ void _showSnackBar(BuildContext context, String msg) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     content: Text(
       msg,
-      style: Theme.of(context).textTheme.headline1,
+      style: Theme.of(context).textTheme.displayLarge,
     ),
     backgroundColor: Colors.green,
   ));
