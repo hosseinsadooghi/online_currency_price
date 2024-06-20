@@ -1,16 +1,3 @@
 # online_currency_price
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+my first mini project with flutter that show online currency prices but use fake api now
+![Screenshot_20240605_210034](https://github.com/hosseinsadooghi/online_currency_price/assets/78034360/c4b366db-60b5-4018-a9bd-da9d5576f128)
